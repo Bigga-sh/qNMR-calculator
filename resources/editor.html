@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #ffffff; overflow: hidden; }
+#loading {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    color: #666; font-family: sans-serif; font-size: 14px;
+}
+</style>
+</head>
+<body>
+<div id="loading">Loading structure editor...</div>
+<div id="jsme_container"></div>
+<script>
+var jsmeApplet = null;
+var _queued = "";
+
+function jsmeOnLoad() {
+    document.getElementById("loading").style.display = "none";
+    jsmeApplet = new JSApplet.JSME("jsme_container", "560px", "430px", {
+        options: "newlook,query"
+    });
+    if (_queued) { jsmeApplet.readMolecule(_queued); }
+}
+
+function getSmiles() {
+    if (!jsmeApplet) return "";
+    var s = jsmeApplet.smiles();
+    return s ? s : "";
+}
+
+function setSmiles(smi) {
+    _queued = smi;
+    if (jsmeApplet) { jsmeApplet.readMolecule(smi); }
+}
+</script>
+<script src="jsme/jsme.nocache.js"></script>
+</body>
+</html>

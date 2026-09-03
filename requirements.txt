@@ -1,0 +1,8 @@
+# Core — required
+PyQt6>=6.4.0
+PyQt6-WebEngine>=6.4.0
+openpyxl>=3.0.0
+
+# Strongly recommended — enables structure drawing preview and MW auto-fill from SMILES
+rdkit>=2022.9.1
+Pillow>=9.0.0
